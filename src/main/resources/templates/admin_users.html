@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><title>사용자 승인</title>
+</head>
+<body>
+<h2>승인 대기 사용자</h2>
+<table>
+    <tr><th>ID</th><th>아이디</th><th>이메일</th><th>닉네임</th><th>액션</th></tr>
+    <tr th:each="u : ${users}">
+        <td th:text="${u.id}">1</td>
+        <td th:text="${u.username}">user</td>
+        <td th:text="${u.email}">email</td>
+        <td th:text="${u.nickname}">nick</td>
+        <td>
+            <form th:action="@{'/admin/users/' + ${u.id} + '/approve'}" method="post" style="display:inline">
+                <button type="submit">승인</button>
+            </form>
+            <form th:action="@{'/admin/users/' + ${u.id} + '/reject'}" method="post" style="display:inline">
+                <button type="submit">거절</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<p><a th:href="@{/}">메인으로</a></p>
+</body>
+</html>
