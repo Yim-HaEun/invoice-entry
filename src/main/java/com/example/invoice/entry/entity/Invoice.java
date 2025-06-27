@@ -1,4 +1,3 @@
-// src/main/java/com/example/invoice/entry/Invoice.java
 package com.example.invoice.entry.entity;
 
 import jakarta.persistence.Entity;

@@ -1,4 +1,3 @@
-// src/main/java/com/example/invoice/entry/InvoiceEntryApplication.java
 package com.example.invoice.entry;
 
 import com.example.invoice.entry.repository.InvoiceRepository;
