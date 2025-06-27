@@ -1,4 +1,3 @@
-// src/main/java/com/example/invoice/web/InvoiceController.java
 package com.example.invoice.entry.controller;
 
 import com.example.invoice.entry.entity.Invoice;

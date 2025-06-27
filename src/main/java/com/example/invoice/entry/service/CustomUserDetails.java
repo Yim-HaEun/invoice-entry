@@ -15,10 +15,15 @@ public class CustomUserDetails implements UserDetails {
 		this.user = user;
 	}
 
+	public String getNickname() {
+		return user.getNickname();
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 	}
+
 
 	@Override
 	public String getPassword() {
