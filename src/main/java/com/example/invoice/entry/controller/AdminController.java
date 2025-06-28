@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/admin/users")
 public class AdminController {
 	private final UserService userService;
+
 	public AdminController(UserService userService) {
 		this.userService = userService;
 	}
