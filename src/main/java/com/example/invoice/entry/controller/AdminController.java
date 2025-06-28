@@ -22,7 +22,7 @@ public class AdminController {
 	public String listPending(Model m) {
 		List<User> pending = userService.findByStatus(User.Status.PENDING);
 		m.addAttribute("users", pending);
-		return "admin_users";
+		return "admin-users";
 	}
 
 	// 승인
