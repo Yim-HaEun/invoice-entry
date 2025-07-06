@@ -2,6 +2,7 @@ package com.example.invoice.entry.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 @Getter @Setter @NoArgsConstructor
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;  // 직렬화 버전
 	public enum Role { USER, ADMIN }
 	public enum Status { PENDING, APPROVED, REJECTED }
 
