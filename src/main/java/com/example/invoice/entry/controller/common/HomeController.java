@@ -1,4 +1,4 @@
-package com.example.invoice.entry.controller;
+package com.example.invoice.entry.controller.common;
 
 import com.example.invoice.entry.service.CustomUserDetails;
 import org.springframework.security.core.Authentication;

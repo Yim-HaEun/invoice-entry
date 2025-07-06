@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>데이터 엔트리</title>
+</head>
+<body>
+<div>
+    <!-- Header -->
+    <header style="display: flex; justify-content: space-between; align-items: center;
+                 padding: 1rem; background: #f0f0f0; border-bottom: 1px solid #ccc;">
+        <div style="font-weight: bold; font-size: 1.2rem;">데이터 엔트리</div>
+        <div id="today"></div>
+        <div>
+            <span th:text="${userName}">사용자</span> |
+            <button onclick="location.href='/logout'">로그아웃</button>
+        </div>
+    </header>
+
+    <div style="display: flex; height: calc(100vh - 60px);">
+        <!-- 좌측: 인보이스 목록 -->
+        <aside style="width: 10%; border-right: 1px solid #ddd; overflow-y: auto; padding: 1rem;">
+            <ul id="invoice-list" style="list-style: none; padding: 0;">
+                <!-- JS로 채움 -->
+            </ul>
+        </aside>
+
+        <!-- 중앙: PDF embed -->
+        <div style="width: 70%; display: flex; justify-content: center; align-items: center;
+                overflow: auto; padding: 1rem;">
+            <div id="pdf-viewer">
+                <p>인보이스를 선택하세요.</p>
+            </div>
+        </div>
+
+        <!-- 우측: 입력 + 가이드 -->
+        <div style="width: 20%; border-left: 1px solid #ddd; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column;">
+            <!-- 데이터 입력 -->
+            <div style="margin-bottom: 1rem;">
+                <h3>데이터 입력</h3>
+                <form id="entry-form">
+                    <div style="margin-bottom: 0.8rem;">
+                        <label>Invoice Number</label>
+                        <input type="text" name="invoiceNumber" style="width: 100%; padding: 0.3rem;" />
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <label>Amount</label>
+                        <input type="number" name="amount" style="width: 100%; padding: 0.3rem;" />
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <label>Issue Date</label>
+                        <input type="date" name="issueDate" style="width: 100%; padding: 0.3rem;" />
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <label>Vendor</label>
+                        <select name="vendor" style="width: 100%; padding: 0.3rem;">
+                            <option value="">선택하세요</option>
+                            <!-- JS로 채움 -->
+                        </select>
+                    </div>
+                    <div style="margin-top: 1rem; display: flex; justify-content: space-between;">
+                        <button type="button" onclick="previousInvoice()">이전</button>
+                        <button type="button" onclick="submitInvoice()">제출</button>
+                        <button type="button" onclick="nextInvoice()">다음</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 가이드 영역 -->
+            <div style="flex-grow: 1; border-top: 1px solid #ccc; padding-top: 1rem;">
+                <h4>입력 가이드</h4>
+                <ul style="font-size: 0.9rem; color: #555;">
+                    <li>Invoice Number: 인보이스 문서에 표시된 번호</li>
+                    <li>Amount: 결제 금액</li>
+                    <li>Issue Date: 발행일</li>
+                    <li>Vendor: 공급업체 선택</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  document.getElementById('today').textContent = new Date().toLocaleDateString();
+
+  function previousInvoice() { /* 이전 인보이스 로직 */ }
+  function submitInvoice() { /* 제출 로직 (AJAX) */ }
+  function nextInvoice() { /* 다음 인보이스 로직 */ }
+</script>
+</body>
+</html>
