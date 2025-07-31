@@ -1,0 +1,90 @@
+/* 색상 정의 */
+:root {
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --dark-gray: #343434;
+    --blue: #0077FF;
+}
+
+/* 전체 헤더 */
+header {
+    background-color: var(--light-gray);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ✅ 그림자 추가 */
+}
+
+/* 헤더 컨테이너: 좌우 공간 확보 */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* 오른쪽 영역 (메뉴 + 사용자 + 로그아웃) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-left a{
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: bold;
+    font-size: 18px;
+}
+.header-right nav {
+    display: flex;
+    gap: 15px;
+}
+.header-right button {
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    padding: 8px 12px;
+    margin: 0 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-buttons button {
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    padding: 8px 12px;
+    margin: 0 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-buttons button:hover,
+.tab-buttons button.active {
+    color: var(--blue);
+    border-bottom: 3px solid var(--blue);
+    background-color: rgba(0, 119, 255, 0.05);
+}
+
+
+
+/* 사용자명 */
+.header-container span {
+    font-size: 16px;
+}
+
+/* 로그아웃 버튼 */
+.header-container form button {
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
