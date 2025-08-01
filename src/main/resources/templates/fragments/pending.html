@@ -1,23 +1,40 @@
 
 <!DOCTYPE html>
 <!-- templates/fragments/pending.html -->
-<div th:fragment="content">
+
+<div class="pending-container" th:fragment="content">
   <p>사용자 승인 대기 리스트</p>
   <table>
-    <tr><th>ID</th><th>아이디</th><th>이메일</th><th>닉네임</th><th>액션</th></tr>
+    <tr><th>아이디</th><th>이메일</th><th>닉네임</th><th>처리</th></tr>
     <tr th:each="u : ${users}">
-      <td th:text="${u.id}">1</td>
-      <td th:text="${u.username}">user</td>
-      <td th:text="${u.email}">email</td>
-      <td th:text="${u.nickname}">nick</td>
-      <td>
-        <form th:action="@{'/admin/users/${u.id}/approve'}" method="post" style="display:inline">
-          <button type="submit">승인</button>
+      <td data-label="아이디" th:text="${u.username}">user</td>
+      <td data-label="이메일" th:text="${u.email}">email</td>
+      <td data-label="닉네임" th:text="${u.nickname}">nick</td>
+      <td data-label="처리">
+        <form th:action="@{/admin/users/{id}/approve(id=${u.id})}" method="post" style="display:inline" onsubmit="return confirmApprove();">
+          <button type="submit" class="pending-approve-btn">승인</button>
         </form>
-        <form th:action="@{'/admin/users/${u.id}/reject'}" method="post" style="display:inline">
-          <button type="submit">거절</button>
+        <form th:action="@{/admin/users/{id}/reject(id=${u.id})}" method="post" style="display:inline" onsubmit="return confirmReject();">
+          <button type="submit" class="pending-reject-btn">거절</button>
         </form>
       </td>
     </tr>
   </table>
+  <script>
+    function confirmApprove(){
+      return confirm("사용자 승인하시겠습니까?");
+    }
+    function confirmReject(){
+      return confirm("사용자 승인을 거절하시겠습니까?");
+    }
+    //승인 거절 후 알림 팝업
+    window.addEventListener("load",function(){
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("result") === "approved"){
+        alert("승인 완료");
+      }else if(params.get("result") === "rejected"){
+        alert("거절 완료");
+      }
+    });
+  </script>
 </div>

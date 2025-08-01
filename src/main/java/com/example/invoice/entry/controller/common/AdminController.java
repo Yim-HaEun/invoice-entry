@@ -29,13 +29,13 @@ public class AdminController {
 	@PostMapping("/{id}/approve")
 	public String approve(@PathVariable Long id) {
 		userService.approve(id);
-		return "redirect:/admin/users";
+		return "redirect:/admin/users?tab=pending&result=approved";
 	}
 
 	// 거절
 	@PostMapping("/{id}/reject")
 	public String reject(@PathVariable Long id) {
 		userService.reject(id);
-		return "redirect:/admin/users";
+		return "redirect:/admin/users?tab=pending&result=rejected";
 	}
 }

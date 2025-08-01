@@ -46,5 +46,19 @@
                     if (tabContainer) tabContainer.innerHTML = "<p>loading... error!!</p>";
                 });
         }
+        // ✅ 페이지 로드 시 쿼리 파라미터로 자동 탭 로드
+        window.addEventListener("load", function () {
+            const params = new URLSearchParams(window.location.search);
+            const tab = params.get("tab");
+            const result = params.get("result");
+
+            if (tab) loadTab(`/admin/${tab}`);
+
+            if (result === "rejected") {
+                alert(" 거절 완료되었습니다.");
+            } else if (result === "approved") {
+                alert(" 승인 완료되었습니다.");
+            }
+        });
     </script>
 </div>
