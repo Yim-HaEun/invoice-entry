@@ -1,56 +1,50 @@
 <!-- templates/fragments/header.html -->
-
 <div th:fragment="header">
-<header>
-    <div class="header-container">
-        <div class="header-left">HOME</div>
-        <div class="header-right">
-            <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+    <header>
+        <div class="header-container">
+            <div class="header-left">HOME</div>
+            <div class="header-right">
+
+                <!-- 관리자 메뉴 (조건문 제거) -->
                 <div class="tab-buttons">
                     <button onclick="loadTab('/admin/qna',this)">중복/보류</button>
                     <button onclick="loadTab('/admin/ocr',this)">OCR</button>
                     <button onclick="loadTab('/admin/verification',this)">검수</button>
                     <button onclick="loadTab('/admin/email',this)">메일</button>
-                    <button onclick="loadTab('/admin/guide',this)">가이드</button>
                     <button onclick="loadTab('/admin/pending',this)">승인대기</button>
                 </div>
-            </div>
 
-            <span th:if="${#authentication != null}" th:text="${#authentication.name}">로그인 사용자</span>
-            <span th:if="${#authentication == null}">로그인 필요</span>
-            <form th:if="${#authentication != null}" th:action="@{/logout}" method="post">
-            <button type="submit">Log Out</button>
-            </form>
-        <!-- ADMIN 권한자 전용 메뉴 -->
+                <!-- 로그인 사용자 -->
+                <span th:if="${#authentication != null}" th:text="${#authentication.name}">로그인 사용자</span>
+                <span th:if="${#authentication == null}">로그인 필요</span>
+
+                <!-- 로그아웃 -->
+                <form th:if="${#authentication != null}" th:action="@{/logout}" method="post">
+                    <button type="submit">Log Out</button>
+                </form>
+            </div>
         </div>
-    </div>
+    </header>
+
     <script>
-        function loadTab(url,btn){
+        function loadTab(url, btn) {
             fetch(url)
-                .then(res=> res.text())
-                .then(html=> {
+                .then(res => res.text())
+                .then(html => {
                     const tabContainer = document.getElementById('tab-content');
                     if (tabContainer) {
                         tabContainer.innerHTML = html;
-                        document.querySelectorAll('.tab-buttons button').forEach(b => {
-                            b.classList.remove('active');
-                        });
-                        if (btn){ //새로 누른 버튼에 active 추가
-                            btn.classList.add('active');
-                            console.log('✅ active added to:', btn.textContent);
-                        }
-                    }else{
-                        console.error("tab-content did not found");
+                        document.querySelectorAll('.tab-buttons button').forEach(b => b.classList.remove('active'));
+                        if (btn) btn.classList.add('active');
+                    } else {
+                        console.error("❌ tab-content not found");
                     }
                 })
-                .catch(err =>{
-                    console.error("tab loading error",err);
+                .catch(err => {
+                    console.error("❌ tab loading error", err);
                     const tabContainer = document.getElementById('tab-content');
-                    if(tabContainer){
-                        tabContainer.innerHTML="<p>loading... error!! </p>"
-                    }
+                    if (tabContainer) tabContainer.innerHTML = "<p>loading... error!!</p>";
                 });
         }
     </script>
-</header>
 </div>
