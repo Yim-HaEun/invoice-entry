@@ -1,0 +1,259 @@
+/* invoice-entry.css */
+
+/* Header */
+
+.title-link{
+    text-decoration: none;
+    color: inherit;
+}/* ──  헤더 ── */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* 좌측(날짜 + 홈) */
+.app-header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* 오늘 날짜 */
+.app-header #today {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: left;
+}
+
+/* Home */
+.app-header .title-link {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: inherit;
+}
+/* 가운데 블록(2번째 자식)을 flex 컨테이너로 만들어 중앙에 배치 */
+.app-header > div:nth-child(2) {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* “파일명:” */
+.header-file-no {
+    margin: 0;                     /* 기본 여백 제거 */
+    padding-right: 2rem;           /* 오른쪽 여유 공간만 줌 */
+    font-weight: 500;
+}
+.header-file-name {
+    margin: 0;                     /* 기본 여백 제거 */
+    padding-right: 10rem;           /* 오른쪽 여유 공간만 줌 */
+    font-weight: 500;
+}
+
+/* 매장/부서 그룹 */
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;     /* label ↔ input 간격 */
+    margin-right: 0.5rem;
+}
+
+/* 필요하다면 input 너비도 조정 가능 */
+.header-info input {
+    width: 200px;
+    padding: 0.25rem;
+    box-sizing: border-box;
+}
+
+
+/* 우측(유저 + 로그아웃) */
+.app-header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ── 매장/부서 영역 ── */
+.store-dept {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: #fafafa;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.store-dept label {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.store-dept input {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+    box-sizing: border-box;
+}
+
+/* 메인 컨테이너 */
+.main-container {
+    display: flex;
+    height: calc(100vh - 60px); /* 헤더 높이(60px)를 제외한 영역 */
+}
+
+/* 좌측: 인보이스 목록 영역 */
+.sidebar-left {
+    width: 10%;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* 인보이스 목록 리스트 */
+#invoice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 중앙: PDF 뷰어 컨테이너 */
+.pdf-viewer-container {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: 1rem;
+}
+
+
+
+/* 우측: 입력 + 가이드 영역 */
+.sidebar-right {
+    width: 20%;
+    border-left: 1px solid #ddd;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* 매장/부서 입력 영역 */
+.sidebar-right > div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.sidebar-right > div:first-child label {
+    width: 30%;
+    font-weight: 500;
+}
+
+.sidebar-right > div:first-child input {
+    width: 68%;
+    padding: 0.3rem;
+    box-sizing: border-box;
+}
+
+/* 데이터 입력 레이블 영역 */
+.entry-label {
+    margin-bottom: 1rem;
+}
+
+.entry-label h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+/* Entry Form 기본 스타일 */
+#entry-form > div {
+    margin-bottom: 0.8rem;
+}
+
+#entry-form > div label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+#entry-form input,
+#entry-form select {
+    width: 100%;
+    padding: 0.3rem;
+    box-sizing: border-box;
+}
+
+/* 폼 버튼 그룹 */
+#entry-form > div:last-child {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 입력 가이드 영역 */
+.guide-container {
+    flex-grow: 1;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+    box-sizing: border-box;
+}
+
+.guide-container h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.guide-container ul {
+    list-style: disc inside;
+    margin: 0;
+    padding: 0;
+}
+
+.guide-container ul li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+
+/* 데이터 입력 폼 그룹 */
+.entry-form-group {
+    margin-bottom: 0.8rem;
+}
+
+/* 입력 폼 요소 (input, select) */
+#entry-form input,
+#entry-form select {
+    width: 100%;
+    padding: 0.3rem;
+    box-sizing: border-box;
+}
+
+/* 폼 버튼 그룹 */
+.button-group {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 입력 가이드 영역 */
+.guide-container {
+    flex-grow: 1;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+}
+
+/* 가이드 리스트*

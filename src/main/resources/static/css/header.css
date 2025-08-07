@@ -12,6 +12,10 @@ header {
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ✅ 그림자 추가 */
 }
+.title-link{
+    text-decoration: none;
+    color: inherit;
+}
 
 /* 헤더 컨테이너: 좌우 공간 확보 */
 .header-container {

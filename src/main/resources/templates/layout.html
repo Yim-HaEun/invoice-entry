@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title layout:title-pattern="$LAYOUT_TITLE | Amount Entry">Amount Entry</title>
@@ -13,7 +14,12 @@
 <body>
 
   <!-- 헤더 영역 -->
-  <div th:replace="fragments/header :: header">헤더 로딩 실패</div>
+  <div sec:authorize="hasRole('ADMIN')"
+       th:replace="fragments/adminHeader :: header">
+  </div>
+  <div sec:authorize="!hasRole('ADMIN')"
+       th:replace="fragments/header :: header">
+  </div>
 
   <!-- 본문 영역 -->
   <main layout:fragment="content">

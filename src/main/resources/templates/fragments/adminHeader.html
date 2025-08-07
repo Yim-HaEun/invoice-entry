@@ -1,0 +1,69 @@
+<!-- templates/fragments/adminHeader.html
+layout으로 부터 계정에따라 구분되어 불러와집니다. -->
+<div th:fragment="header">
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <a th:href="@{/}"  class="title-link">
+                    HOME
+                </a>
+            </div>
+            <div class="header-right">
+
+                <!-- 관리자 메뉴 (조건문 제거) -->
+                <div class="tab-buttons">
+                    <button onclick="loadTab('/admin/qna',this)">중복/보류</button>
+                    <button onclick="loadTab('/admin/ocr',this)">OCR</button>
+                    <button onclick="loadTab('/admin/verification',this)">검수</button>
+                    <button onclick="loadTab('/admin/email',this)">메일</button>
+                    <button onclick="loadTab('/admin/pending',this)">승인대기</button>
+                </div>
+
+                <!-- 로그인 사용자 -->
+                <span th:if="${#authentication != null}" th:text="${#authentication.name}">로그인 사용자</span>
+                <span th:if="${#authentication == null}">로그인 필요</span>
+
+                <!-- 로그아웃 -->
+                <form th:if="${#authentication != null}" th:action="@{/logout}" method="post">
+                    <button type="submit">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        function loadTab(url, btn) {
+            fetch(url)
+                .then(res => res.text())
+                .then(html => {
+                    const tabContainer = document.getElementById('tab-content');
+                    if (tabContainer) {
+                        tabContainer.innerHTML = html;
+                        document.querySelectorAll('.tab-buttons button').forEach(b => b.classList.remove('active'));
+                        if (btn) btn.classList.add('active');
+                    } else {
+                        console.error("❌ tab-content not found");
+                    }
+                })
+                .catch(err => {
+                    console.error("❌ tab loading error", err);
+                    const tabContainer = document.getElementById('tab-content');
+                    if (tabContainer) tabContainer.innerHTML = "<p>loading... error!!</p>";
+                });
+        }
+        // ✅ 페이지 로드 시 쿼리 파라미터로 자동 탭 로드
+        window.addEventListener("load", function () {
+            const params = new URLSearchParams(window.location.search);
+            const tab = params.get("tab");
+            const result = params.get("result");
+
+            if (tab) loadTab(`/admin/${tab}`);
+
+            if (result === "rejected") {
+                alert(" 거절 완료되었습니다.");
+            } else if (result === "approved") {
+                alert(" 승인 완료되었습니다.");
+            }
+        });
+    </script>
+</div>
